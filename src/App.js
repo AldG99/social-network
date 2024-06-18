@@ -6,6 +6,8 @@ import Profile from "./components/Auth/Profile";
 import ContactList from "./components/Contacts/ContactList";
 import AddContact from "./components/Contacts/AddContact";
 import ChatWindow from "./components/Chat/ChatWindow";
+import FriendRequests from "./components/Contacts/FriendRequests";
+
 import { auth } from "./firebaseConfig";
 
 class App extends React.Component {
@@ -36,6 +38,7 @@ class App extends React.Component {
             <Route path="/profile" element={this.state.user ? <Profile /> : <Navigate to="/" />} />
             <Route path="/contacts" element={this.state.user ? <ContactList /> : <Navigate to="/" />} />
             <Route path="/add-contact" element={this.state.user ? <AddContact /> : <Navigate to="/" />} />
+            <Route path="/friend-request" element={<FriendRequests />} />
             <Route path="/chat/:contactEmail" element={this.state.user ? <ChatWindow /> : <Navigate to="/" />} />
           </Routes>
         </div>
