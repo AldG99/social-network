@@ -12,7 +12,7 @@ const Profile = () => {
   const [contacts, setContacts] = useState([]);
   const [friendRequests, setFriendRequests] = useState([]);
   const [image, setImage] = useState(null);
-  const [url, setUrl] = useState(auth.currentUser.phoneURL || "https://via.placeholder.com/150");
+  const [url, setUrl] = useState(auth.currentUser.photoURL || "https://via.placeholder.com/150");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -119,6 +119,7 @@ const Profile = () => {
 
     uploadTask.on(
       "state_changed",
+      (snapshot) => {},
       (error) => {
         console.log(error);
       },
@@ -153,7 +154,7 @@ const Profile = () => {
       {userData ? (
         <div>
           <p>Nombre: {userData.firstName} {userData.lastName}</p>
-          <p>Edad: {calculateAge(userData.birthDate)}</p>
+          <p>Edad: {calculateAge(userData.birthdate)}</p>
           <p>ID Única: {userData.userId}</p>
         </div>
       ) : (
