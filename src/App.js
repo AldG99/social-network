@@ -18,7 +18,7 @@ class App extends React.Component {
     };
   }
 
-  componentDidCatch() {
+  componentDidMount() {
     auth.onAuthStateChanged((user) => {
       if (user) {
         this.setState({ user });
@@ -38,7 +38,7 @@ class App extends React.Component {
             <Route path="/profile" element={this.state.user ? <Profile /> : <Navigate to="/" />} />
             <Route path="/contacts" element={this.state.user ? <ContactList /> : <Navigate to="/" />} />
             <Route path="/add-contact" element={this.state.user ? <AddContact /> : <Navigate to="/" />} />
-            <Route path="/friend-request" element={<FriendRequests />} />
+            <Route path="/friend-requests" element={<FriendRequests />} />
             <Route path="/chat/:contactEmail" element={this.state.user ? <ChatWindow /> : <Navigate to="/" />} />
           </Routes>
         </div>

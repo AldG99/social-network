@@ -52,42 +52,12 @@ const Register = () => {
     <div>
       <h2>Registro de Usuario</h2>
       {error && <p style={{ color: "red" }}>{error}</p>}
-      <input
-        type="text"
-        value={firtName}
-        onChange={(e) => setFirstName(e.target.value)}
-        placeholder="Nombre"
-      />
-      <input
-        type="text"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        placeholder="Apellido"
-      />
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Correo electrónico"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Contraseña"
-      />
-      <input
-        type="date"
-        value={birthdate}
-        onChange={(e) => setBirthdate(e.target.value)}
-        placeholder="Fecha de Nacimiento"
-      />
-      <input
-        type="text"
-        value={country}
-        onChange={(e) => setCountry(e.target.value)}
-        placeholder="País"
-      />
+      <input type="text" value={firtName} onChange={(e) => setFirstName(e.target.value)} placeholder="Nombre" />
+      <input type="text" value={lastName} onChange={(e) => setLastName(e.target.value)} placeholder="Apellido" />
+      <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Correo electrónico" />
+      <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Contraseña" />
+      <input type="date" value={birthdate} onChange={(e) => setBirthdate(e.target.value)} placeholder="Fecha de Nacimiento" />
+      <input type="text" value={country} onChange={(e) => setCountry(e.target.value)} placeholder="País" />
       <button onClick={handleRegister}>Registrarse</button>
     </div>
   );

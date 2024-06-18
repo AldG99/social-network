@@ -51,7 +51,6 @@ const FriendRequests = () => {
       const requestDocRef = doc(firestore, "friendRequests", requestId);
       await updateDoc(requestDocRef, { status: "accepted" });
 
-      // Remove the request from the state
       setFriendRequests(friendRequests.filter(request => request.id !== requestId));
     } catch (error) {
       console.error("Error al aceptar la solicitud de amistad:", error);
