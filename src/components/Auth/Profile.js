@@ -23,7 +23,7 @@ const Profile = () => {
           setUserData(userDoc.data());
         }
       } catch (error) {
-        console.error("Error fetching user data", error);
+        console.error("Error al obtener los datos del usuario", error);
       }
     };
 
@@ -38,7 +38,7 @@ const Profile = () => {
           setContacts(contactData);
         }
       } catch (error) {
-        console.error("Error fetching contacts:", error);
+        console.error("Error al obtener contactos:", error);
       }
     };
 
@@ -53,7 +53,7 @@ const Profile = () => {
         const requests = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
         setFriendRequests(requests);
       } catch (error) {
-        console.error("Error fetching friend requests:", error);
+        console.error("Error al obtener solicitudes de amistad:", error);
       }
     };
 
