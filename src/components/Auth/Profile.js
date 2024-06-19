@@ -6,6 +6,7 @@ import { doc, getDoc, updateDoc, query, where, getDocs, collection, setDoc } fro
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { updateProfile } from "firebase/auth";
 import { Link } from "react-router-dom";
+import ChatWindow from "../Chat/ChatWindow";
 
 const Profile = () => {
   const [userData, setUserData] = useState(null);
