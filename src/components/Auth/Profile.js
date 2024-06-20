@@ -12,6 +12,7 @@ const Profile = () => {
   const [userData, setUserData] = useState(null);
   const [contacts, setContacts] = useState([]);
   const [friendRequests, setFriendRequests] = useState([]);
+  const [selectedContact, setSelectedContact] = useState(null);
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState(auth.currentUser.photoURL || "https://via.placeholder.com/150");
   const navigate = useNavigate();
@@ -171,12 +172,17 @@ const Profile = () => {
       {contacts.length > 0 ? (
         <ul>
           {contacts.map((contact, index) => (
-            <li key={index}>{contact.firstName} {contact.lastName}</li>
+            <li key={index}>
+              {contact.firstName} {contact.lastName}
+              <button onClick={() => setSelectedContact(contact)}>Chatear</button>
+            </li>
           ))}
         </ul>
       ) : (
         <p>No tienes contactos aún.</p>
       )}
+
+      {selectedContact && <ChatWindow selectedContact={selectedContact} onClose={() => setSelectedContact(null)} />}
 
       <h3>Solicitud de Amistad</h3>
       {friendRequests.length > 0 ? (
