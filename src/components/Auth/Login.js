@@ -1,46 +1,38 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { auth } from "../../firebaseConfig";
+import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../../firebaseConfig";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [err, setErr] = useState(false);
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const email = e.target[0].value;
+    const password = e.target[1].value;
+
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("Inicio de sesión exitoso");
-      setError(null);
-      navigate("/profile");
+      navigate("/")
     } catch (error) {
-      console.error("Error al iniciar sesión", error);
-      setError(error.message);
+      setErr(true);
     }
   };
 
   return (
-    <div>
-      <h2>Iniciar Sesión</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Correo Electrónico"
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Contraseña"
-      />
-      <button onClick={handleLogin}>Iniciar Sesión</button>
-      <p>
-        ¿No tienes cuenta? <a href="/register">Regístrate</a>
-      </p>
+    <div className="formContainer">
+      <div className="formWrapper">
+        <span className="logo">Chat</span>
+        <span className="title">Login</span>
+        <form onSubmit={handleSubmit}>
+          <input type="email" placeholder="email" />
+          <input type="password" placeholder="password"/>
+          <button>Iniciar sesión</button>
+          {err && <span>Algo salió mal</span>}
+        </form>
+        <p>¿No tienes una cuenta? <Link to="/register">Registrarse</Link></p>
+      </div>
     </div>
   );
 };
