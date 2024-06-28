@@ -15,9 +15,12 @@ const Register = () => {
     e.preventDefault();
 
     const displayName = e.target[0].value;
-    const email = e.target[1].value;
-    const password = e.target[2].value;
-    const file = e.target[3].files[0];
+    const lastName = e.target[1].value;
+    const birthDate = e.target[2].value;
+    const gender = e.target[3].value;
+    const email = e.target[4].value;
+    const password = e.target[5].value;
+    const file = e.target[6].files[0];
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -35,6 +38,9 @@ const Register = () => {
             await setDoc(doc(db, "users", res.user.uid), {
               uid: res.user.uid,
               displayName,
+              lastName,
+              birthDate,
+              gender,
               email,
               photoURL: downloadURL,
             });
@@ -58,9 +64,17 @@ const Register = () => {
         <span className="logo">Chat</span>
         <span className="title">Registrarse</span>
         <form onSubmit={handleSubmit}>
-          <input required type="text" placeholder="display name" />
-          <input required type="email" placeholder="email" />
-          <input required type="password" placeholder="password" />
+          <input required type="text" placeholder="Nombre" />
+          <input required type="text" placeholder="Apellido" />
+          <input required type="date" placeholder="Fecha de nacimiento" />
+          <select required name="gender">
+            <option value="">Género</option>
+            <option value="Hombre">Hombre</option>
+            <option value="Mujer">Mujer</option>
+            <option value="Otro">Otro</option>
+          </select>
+          <input required type="email" placeholder="Correo Electrónico" />
+          <input required type="password" placeholder="Contraseña" />
           <input required style={{display: "none" }} type="file" id="file" />
           <label htmlFor="file">
             <span>Agregar un Perfil</span>
