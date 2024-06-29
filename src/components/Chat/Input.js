@@ -30,7 +30,7 @@ const Input = () => {
                 id: uuid(),
                 text,
                 senderId: currentUser.uid,
-                data: Timestamp.now(),
+                date: Timestamp.now(),
                 img: downloadURL,
               }),
             });
@@ -48,11 +48,18 @@ const Input = () => {
       });
     }
 
+    await updateDoc(doc(db, "userChats", currentUser.uid), {
+      [data.chatId + ".lastMessage"]: {
+        text,
+      },
+      [data.chatId + ".date"]: serverTimestamp(),
+    });
+
     await updateDoc(doc(db, "userChats", data.user.uid), {
       [data.chatId + ".lastMessage"]: {
         text,
       },
-      [data.chatId + ".data"]: serverTimestamp(),
+      [data.chatId + ".date"]: serverTimestamp(),
     });
 
     setText("");
